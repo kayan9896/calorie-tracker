@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "as3",
+    "slug": "as3",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
