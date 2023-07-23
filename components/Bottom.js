@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function Bottom({navigation}) {
   return (
-    <View style={{flexDirection:'row'}}>
+    <View style={{flexDirection:'row',padding:10}}>
       <Pressable onPress={function(){navigation.navigate('All Entries')}}>
         <Text>All Entries</Text>
       </Pressable>
