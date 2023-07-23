@@ -1,13 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Allentries from './screens/Allentries.js';
+import Overlimit from './screens/Overlimit.js';
+import Edit from './screens/Edit.js';
 
+const Stack = createNativeStackNavigator();
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="All Entries" component={Allentries} />
+        <Stack.Screen name="Over-limit Entries" component={Overlimit} options={{headerBackVisible:false, headerTintColor:'white', headerStyle:{backgroundColor:'purple'}}}/>
+        <Stack.Screen name="Edit" component={Edit} />
+      </Stack.Navigator>
+
+    </NavigationContainer>
   );
 }
 
@@ -19,3 +29,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
