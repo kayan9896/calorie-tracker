@@ -6,6 +6,7 @@ export default function Edit({route,remove}) {
   const [reviewed,setReviewed] = React.useState(route.params.review)
   return (
     <View style={{alignItems:'center',padding:10,margin:40,backgroundColor:'teal'}}>
+      {alert('please review this entry')}
       <Text>Calorires: {route.params.cal}</Text>
       <Text>Description: {route.params.meal}</Text>
       <View style={{flexDirection:'row',justifyContent:'space-around',width:'100%'}}>
