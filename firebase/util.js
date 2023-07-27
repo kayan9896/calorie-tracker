@@ -1,5 +1,5 @@
 import {db} from './setup.js';
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc,deleteDoc,doc } from "firebase/firestore";
 
 async function add(item){
     try{
@@ -9,4 +9,12 @@ async function add(item){
         console.log(e)
     }
 }
-export {add};
+async function remove(id){
+    try{
+        const docRef=await deleteDoc(doc(db,"cal",id))
+    }
+    catch(e){
+        console.log(e)
+    }
+}
+export {add,remove};

@@ -16,7 +16,7 @@ export default function Add({navigation}) {
     }else{
       
       add({meal:meal,cal:cal,review:review})
-      navigation.navigate('All Entries')
+      navigation.goBack()
     }
   }
   return (

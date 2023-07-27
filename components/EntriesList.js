@@ -1,23 +1,21 @@
 import { View, Text, FlatList, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import Items from './Items'
+import {db} from '../firebase/setup.js'
+import { collection,onSnapshot } from 'firebase/firestore'
 
 export default function EntriesList({lim=0}) {
-    const [data, setData] = useState([
-        {meal: 'Breakfast', cal: 100},
-        {meal: 'Lunch', cal: 200},
-        {meal: 'Dinner', cal: 300},
-        {meal: 'Snacks', cal: 400},
-        {meal: 'supper', cal: 500},
-        {meal: 'feast', cal: 600},
-        {meal: 'party', cal: 700},
-        {meal: 'wedding', cal: 800},
-        {meal: 'celebration', cal: 900},
-        {meal: 'treat', cal: 1000},
-        {meal: 'dessert', cal: 1100},
-
-    ])
+    const [data, setData] = useState([])
+    useEffect(()=>{
+      const dt=onSnapshot(collection(db,"cal"),(snapshot)=>{
+        if(!snapshot.empty){
+          const puredt=snapshot.docs.map((doc)=>{return {...doc.data(),id:doc.id}})
+          setData(puredt)
+        }});
+      return()=>{dt()}
+      },[]
+    )
   return (
     <View style={{flex:1}}>
         <FlatList data={data.filter(i=>i.cal>lim)} renderItem={({item})=>{return <Items itm={item}  />}} showsVerticalScrollIndicator={false}/>
