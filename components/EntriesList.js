@@ -18,7 +18,7 @@ export default function EntriesList({lim=0}) {
     )
   return (
     <View style={{flex:1}}>
-        <FlatList data={data.filter(i=>i.cal>lim)} renderItem={({item})=>{return <Items itm={item}  />}} showsVerticalScrollIndicator={false}/>
+        <FlatList data={data.filter(i=>i.cal>lim)} renderItem={({item})=>{return (lim==0||(lim!=0&&item.review===false))?<Items itm={item}/>:null}} showsVerticalScrollIndicator={false}/>
     </View>
   )
 }

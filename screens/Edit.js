@@ -1,7 +1,7 @@
-import { View, Text, Pressable } from 'react-native'
+import { View, Text, Pressable, Alert } from 'react-native'
 import React from 'react'
 import { MaterialCommunityIcons ,MaterialIcons} from '@expo/vector-icons';
-import {remove} from '../firebase/util.js'
+import {remove,update} from '../firebase/util.js'
 import { deleteDoc } from 'firebase/firestore';
 
 export default function Edit({route,navigation}) {
@@ -13,12 +13,18 @@ export default function Edit({route,navigation}) {
       <Text>Description: {route.params.meal}</Text>
       <View style={{flexDirection:'row',justifyContent:'space-around',width:'100%'}}>
         <Pressable onPress={()=>{
-          remove(route.params.id)
-          navigation.goBack()}}>
+          Alert.alert(
+            'Alert',
+            'Delete?',
+            [{text:'Yes',onPress:()=>{remove(route.params.id),navigation.goBack()}},
+            {text:'No' }]
+          )
+          }}>
           <MaterialCommunityIcons name="delete" size={24} color="black" />
         </Pressable>
         {(!reviewed&&route.params.cal>500)?<Pressable onPress={function(){
           setReviewed(true)
+          update(route.params.id,{...route.params,review:true})
           }}>
           <MaterialIcons name="check" size={24} color="black" />
         </Pressable>:null}

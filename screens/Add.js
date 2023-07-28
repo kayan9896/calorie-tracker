@@ -11,7 +11,7 @@ export default function Add({navigation}) {
     setcal('')
   }
   function submit(){
-    if(isNaN(cal)||!meal){
+    if(!(cal>0)||!meal){
       alert('invalid input')
     }else{
       
