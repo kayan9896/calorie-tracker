@@ -25,6 +25,7 @@ export default function Edit({route,navigation}) {
         {(!reviewed&&route.params.cal>500)?<Pressable onPress={function(){
           setReviewed(true)
           update(route.params.id,{...route.params,review:true})
+          navigation.goBack()
           }}>
           <MaterialIcons name="check" size={24} color="black" />
         </Pressable>:null}

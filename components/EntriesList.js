@@ -12,7 +12,8 @@ export default function EntriesList({lim=0}) {
         if(!snapshot.empty){
           const puredt=snapshot.docs.map((doc)=>{return {...doc.data(),id:doc.id}})
           setData(puredt)
-        }});
+        }else{setData([])}
+      });
       return()=>{dt()}
       },[]
     )
