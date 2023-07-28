@@ -3,16 +3,20 @@ import React from 'react'
 import { MaterialCommunityIcons ,MaterialIcons} from '@expo/vector-icons';
 import {remove,update} from '../firebase/util.js'
 import { deleteDoc } from 'firebase/firestore';
+import helper, { colour } from '../components/helper.js';
 
 export default function Edit({route,navigation}) {
   const [reviewed,setReviewed] = React.useState(route.params.review)
   return (
-    <View style={{alignItems:'center',padding:10,margin:40,backgroundColor:'teal'}}>
+    <View style={helper.editcontainer}>
       {(!reviewed&&route.params.cal>500)?alert('please review this entry'):null}
-      <Text>Calorires: {route.params.cal}</Text>
-      <Text>Description: {route.params.meal}</Text>
-      <View style={{flexDirection:'row',justifyContent:'space-around',width:'100%'}}>
-        <Pressable onPress={()=>{
+      <Text style={{color:colour.white}}>Calorires: {route.params.cal}</Text>
+      <Text style={{color:colour.white}}>Description: {route.params.meal}</Text>
+      <View style={helper.editpressablerow}>
+        <Pressable style={({ pressed }) => {
+          return [helper.itemcontainer,pressed && helper.ripple];
+        }}
+        onPress={()=>{
           Alert.alert(
             'Alert',
             'Delete?',
@@ -20,14 +24,18 @@ export default function Edit({route,navigation}) {
             {text:'No' }]
           )
           }}>
-          <MaterialCommunityIcons name="delete" size={24} color="black" />
+          <MaterialCommunityIcons name="delete" size={24} color="white" />
+        
         </Pressable>
-        {(!reviewed&&route.params.cal>500)?<Pressable onPress={function(){
+        {(!reviewed&&route.params.cal>500)?<Pressable style={({ pressed }) => {
+          return [helper.itemcontainer,pressed && helper.ripple];
+        }}
+        onPress={function(){
           setReviewed(true)
           update(route.params.id,{...route.params,review:true})
           navigation.goBack()
           }}>
-          <MaterialIcons name="check" size={24} color="black" />
+          <MaterialIcons name="check" size={24} color="white" />
         </Pressable>:null}
       </View>
     </View>

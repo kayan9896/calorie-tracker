@@ -8,6 +8,9 @@ import Overlimit from './screens/Overlimit.js';
 import Edit from './screens/Edit.js';
 import Add from './screens/Add.js';
 import Plus from './components/Plus.js';
+import { colour } from './components/helper.js';
+import helper from './components/helper.js';
+
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -15,21 +18,15 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="All Entries" component={Allentries} 
-        options={({navigation})=>({
-          headerRight:()=><Plus navigation={navigation}/>,
-          headerBackVisible:false, 
-          headerTintColor:'white', 
-          headerStyle:{backgroundColor:'purple'}
-          })}/>
+        options={helper.opt}/>
         <Stack.Screen name="Over-limit Entries" component={Overlimit} 
-        options={({navigation})=>({
-          headerRight:()=><Plus navigation={navigation}/>,
-          headerBackVisible:false, 
-          headerTintColor:'white', 
-          headerStyle:{backgroundColor:'purple'}
-          })}/>
-        <Stack.Screen name="Edit" component={Edit} options={{headerBackTitle:'back'}}/>
-        <Stack.Screen name="Add" component={Add} options={{headerBackTitle:'back'}}/>
+        options={helper.opt}/>
+        <Stack.Screen name="Edit" component={Edit} options={{headerTintColor:colour.white, 
+        headerStyle:{backgroundColor:colour.purple},
+        headerBackTitle:'back'}}/>
+        <Stack.Screen name="Add" component={Add} options={{headerTintColor:colour.white, 
+        headerStyle:{backgroundColor:colour.purple},
+        headerBackTitle:'back'}}/>
       </Stack.Navigator>
 
     </NavigationContainer>
