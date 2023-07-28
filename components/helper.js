@@ -20,5 +20,6 @@ export default helper = StyleSheet.create({
         headerStyle:{backgroundColor:colour.purple}
         }),
     calbar:{backgroundColor:colour.white,paddingHorizontal:5,color:colour.purple} ,
-    bottomcontain:{flexDirection:'row',justifyContent:'center',padding:5,backgroundColor:colour.purple}
+    bottomcontain:{flexDirection:'row',justifyContent:'center',padding:5,backgroundColor:colour.purple},
+    prssinaddpage:{padding:10,margin:10, backgroundColor:'purple'}
 })

@@ -1,7 +1,7 @@
 import { View, Text, TextInput, Pressable } from 'react-native'
 import React from 'react'
 import {add} from '../firebase/util.js'
-import { colour } from '../components/helper.js'
+import helper, { colour } from '../components/helper.js'
 
 export default function Add({navigation}) {
   const [meal,setmeal]=React.useState('')
@@ -21,20 +21,22 @@ export default function Add({navigation}) {
     }
   }
   return (
-    <View style={{flex:0.3,alignItems:'center',margin:40,padding:20,justifyContent:'space-evenly',backgroundColor:colour.pink}}>
-        <View style={{flexDirection:'row',alignItems:'flex-start'}}>
-            <Text>Calories</Text>
-            <View style={{width:40}}></View>
-            <TextInput style={{backgroundColor:colour.white}}placeholder="Calories" onChangeText={function(tx){setcal(tx)}}>{cal}</TextInput>
+    <View style={{flex:0.5,margin:40,padding:10,justifyContent:'space-evenly'}}>
+        <View style={{flex:1,flexDirection:'row',padding:10,justifyContent:'flex-end'}}>
+            <Text style={{flex:1,color:colour.purple}}>Calories</Text>
+            <TextInput style={{backgroundColor:colour.white,flex:2}}placeholder="Calories" onChangeText={function(tx){setcal(tx)}}>{cal}</TextInput>
         </View>
-        <View style={{flex:5,flexDirection:'row',alignItems:'stretch'}}>
-            <Text>Meal</Text>
-            <TextInput style={{backgroundColor:'pink',textAlignVertical: 'top'}}placeholder="Meal" onChangeText={function(tx){setmeal(tx)}}>{meal}</TextInput>
+        <View style={{flex:7,flexDirection:'row',padding:10}}>
+            <Text style={{flex:1,color:colour.purple}}>Description</Text>
+            <TextInput style={{backgroundColor:colour.white,flex:2}}placeholder="Description" onChangeText={function(tx){setmeal(tx)}}>{meal}</TextInput>
         </View>
-        <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-            <Pressable onPress={reset} style={{padding:10, backgroundColor:'purple'}}><Text style={{color:'white'}}> reset </Text></Pressable>
-            <Text style={{padding:10}}></Text>
-            <Pressable onPress={submit} style={{padding:10, backgroundColor:'purple'}}><Text style={{color:'white'}}>submit</Text></Pressable>
+        <View style={{flexDirection:'row',justifyContent:'center'}}>
+            <Pressable onPress={reset} style={function({pressed}){
+              return [helper.prssinaddpage,pressed && helper.ripple]
+            }}><Text style={{color:colour.white}}> reset </Text></Pressable>
+            <Pressable onPress={submit} style={function({pressed}){
+              return [helper.prssinaddpage,pressed && helper.ripple]
+            }}><Text style={{color:colour.white}}>submit</Text></Pressable>
         </View>
     </View>
   )

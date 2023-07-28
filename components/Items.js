@@ -16,7 +16,7 @@ export default function Items({itm}) {
         >
             <Text style={{color:colour.white}}>{itm.meal}</Text>
             <View style={{flexDirection:'row',marginLeft:50}}>
-              {itm.cal>500?<FontAwesome5 name="exclamation-triangle" size={16} color="yellow" paddingHorizontal={4}/>:null}
+              {itm.cal>500?<FontAwesome5 name="exclamation-triangle" size={16} color="yellow" paddingHorizontal={4} />:null}
               <Text style={helper.calbar}>{itm.cal}</Text>
             </View>
         </Pressable>  
