@@ -9,7 +9,6 @@ export default function Edit({route,navigation}) {
   const [reviewed,setReviewed] = React.useState(route.params.review)
   return (
     <View style={helper.editcontainer}>
-      {(!reviewed&&route.params.cal>500)?alert('please review this entry'):null}
       <Text style={{color:colour.white}}>Calorires: {route.params.cal}</Text>
       <Text style={{color:colour.white}}>Description: {route.params.meal}</Text>
       <View style={helper.editpressablerow}>
@@ -31,9 +30,14 @@ export default function Edit({route,navigation}) {
           return [helper.itemcontainer,pressed && helper.ripple];
         }}
         onPress={function(){
-          setReviewed(true)
-          update(route.params.id,{...route.params,review:true})
-          navigation.goBack()
+          Alert.alert(
+            'Alert',
+            'Confirm?',
+            [{text:'Yes',onPress:()=>{setReviewed(true)
+              update(route.params.id,{...route.params,review:true})
+              navigation.goBack()}},
+            {text:'No' }]
+          )
           }}>
           <MaterialIcons name="check" size={24} color="white" />
         </Pressable>:null}
